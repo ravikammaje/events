@@ -1,3 +1,5 @@
-/projects/git/events/EventsWebServices/src/main/java/hello/Person.java
-/projects/git/events/EventsWebServices/src/main/java/hello/Application.java
-/projects/git/events/EventsWebServices/src/main/java/hello/PersonRepository.java
+/projects/git/events/EventsWebServices/src/main/java/events/data/User.java
+/projects/git/events/EventsWebServices/src/main/java/events/Application.java
+/projects/git/events/EventsWebServices/src/main/java/events/data/repository/UserRepository.java
+/projects/git/events/EventsWebServices/src/main/java/events/data/repository/EventsRepository.java
+/projects/git/events/EventsWebServices/src/main/java/events/data/Event.java

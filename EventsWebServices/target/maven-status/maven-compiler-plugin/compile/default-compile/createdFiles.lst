@@ -1,3 +1,5 @@
-hello/Person.class
-hello/PersonRepository.class
-hello/Application.class
+events/Application.class
+events/data/Event.class
+events/data/repository/EventsRepository.class
+events/data/repository/UserRepository.class
+events/data/User.class
