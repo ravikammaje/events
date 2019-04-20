@@ -1,0 +1,60 @@
+<html>
+
+<head>
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+<script>
+
+function getFormData($form){
+    var unindexed_array = $form.serializeArray();
+    var indexed_array = {};
+
+    $.map(unindexed_array, function(n, i){
+        indexed_array[n['name']] = n['value'];
+    });
+
+    return indexed_array;
+}
+
+function onSubmit() {
+    //var jsonString = JSON.stringify($('#eventFormId').serializeArray());
+    var $form = $("#eventFormId");
+    var data = getFormData($form);
+    var jsonString = JSON.stringify(data);
+    alert(jsonString);
+
+    $.ajax({
+    type: "POST",
+    url: "http://localhost:8080/event",
+    // The key needs to match your method's input parameter (case-sensitive).
+    data: jsonString,
+    contentType: "application/json; charset=utf-8",
+    dataType: "json",
+    success: function(data){alert(data);},
+    failure: function(errMsg) {
+        alert(errMsg);
+    }
+});
+}
+
+</script>
+
+</head>
+<body>
+    Add an event
+
+    <form id="eventFormId">
+        Title: <input type="text" name="title"> <br>
+        Description: <textarea name="description" rows="10" cols="30"></textarea><br>
+        ImageURL: <input type="text" name="imageURL"> <br>
+        Latitude: <input type="text" name="latitude"> <br>
+        Longitude: <input type="text" name="longitude"> <br>
+        Added By: <input type="text" name="addedByName"> <br>
+        Event Start Date Time <input type="text" name="eventStartDateTime"> <br>
+        Event End Date Time <input type="text" name="eventEndDateTime"> <br>
+        Added On <input type="text" name="addedOn"> <br>
+        <button type="button" onclick="onSubmit()">Submit</button>
+    </form>
+</body>
+</html>

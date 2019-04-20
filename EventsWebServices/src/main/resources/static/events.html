@@ -1,0 +1,100 @@
+<html>
+<head>
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js">
+</script>
+
+<script>
+
+function onLoad() {
+
+    $.ajax({
+     type: "GET",
+     url: window.location.protocol + "//"+ window.location.hostname +":"+window.location.port +"/event", //"http://localhost:8888/event",
+    // The key needs to match your method's input parameter (case-sensitive).
+     contentType: "application/json; charset=utf-8",
+     dataType: "json",
+     success: function(data){
+    	 renderEvents(data._embedded.event);
+    	 },
+     failure: function(errMsg) {
+         alert(errMsg);
+    	}
+    });
+}
+
+function renderEvents(data) {
+	var i;
+	for(i=0; i < data.length; i++) {
+		createDiv(data[i]);	
+	}
+}
+
+function createDiv(eventObject) {
+	var div = document.createElement("div");
+	div.innerHTML += "<hr> <h3>" + eventObject.title + "<br>";
+
+
+	
+	var img = new Image(); // width, height values are optional params 
+	img.src = eventObject.coverImageURL;
+	img.height = "400";
+	div.appendChild(img);
+	div.innerHTML += "<br>"
+	div.innerHTML += "<br>"
+
+	div.innerHTML += eventObject.description;
+	div.innerHTML += "<br>"
+
+	div.innerHTML += "<br>"
+	var a = document.createElement('a');
+    a.href =  eventObject.detailDocURL; // Insted of calling setAttribute 
+    a.innerHTML = "more info     " // <a>INNER_TEXT</a>
+    div.appendChild(a); // Append the link to the div  
+	div.innerHTML += "<br>"
+
+	lat = eventObject.latitude;
+	lon = eventObject.longitude;
+	var loc = document.createElement('a');
+	loc.href =  "https://www.google.com/maps/place/"+lat+","+lon+"/@"+lat+","+lon+",10z";; // Insted of calling setAttribute 
+	loc.innerHTML = "where" // <a>INNER_TEXT</a>
+	div.appendChild(loc); // Append the link to the div  
+	div.innerHTML += "<br>"
+
+	
+	var startDate = new Date(eventObject.eventStartDateTime).toLocaleDateString('en-GB', {
+		    day : 'numeric',
+		    month : 'short',
+		    year : 'numeric'
+		}).split(' ').join('-');
+	
+	var endDate = new Date(eventObject.eventEndDateTime).toLocaleDateString('en-GB', {
+	    day : 'numeric',
+	    month : 'short',
+	    year : 'numeric'
+	}).split(' ').join('-');
+	div.innerHTML += "when: " + startDate + " to " + endDate;
+	div.innerHTML += "<br>"
+
+	div.innerHTML += " addedBy: " + eventObject.addedByName;
+	div.innerHTML += "<br>"
+	div.innerHTML += "<hr>"
+	
+	
+
+	
+	document.getElementById("eventDiv").appendChild(div);
+}
+    
+</script>
+    
+</head>
+<body onload="onLoad()"">
+
+<div id="eventDiv">
+
+</div>
+
+</body>
+</html>

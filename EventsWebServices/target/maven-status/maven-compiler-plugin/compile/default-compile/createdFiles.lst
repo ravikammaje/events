@@ -1,5 +1,5 @@
 events/Application.class
-events/data/Event.class
 events/data/repository/EventsRepository.class
 events/data/repository/UserRepository.class
 events/data/User.class
+events/data/Event.class

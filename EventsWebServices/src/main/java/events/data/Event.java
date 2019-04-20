@@ -11,7 +11,8 @@ public class Event {
 	
 	private String title;
 	private String description;
-	private String imageURL;
+	private String coverImageURL;
+	private String detailDocURL;
 	private double latitude;
 	private double longitude;
 	private String addedByName; //links to name in user table 
@@ -19,6 +20,18 @@ public class Event {
 	private Date eventEndDateTime;
 	private Date addedOn;
 	
+	public String getCoverImageURL() {
+		return coverImageURL;
+	}
+	public void setCoverImageURL(String coverImageURL) {
+		this.coverImageURL = coverImageURL;
+	}
+	public String getDetailDocURL() {
+		return detailDocURL;
+	}
+	public void setDetailDocURL(String detailDocURL) {
+		this.detailDocURL = detailDocURL;
+	}
 	public String getId() {
 		return id;
 	}
@@ -36,12 +49,6 @@ public class Event {
 	}
 	public void setDescription(String description) {
 		this.description = description;
-	}
-	public String getImageURL() {
-		return imageURL;
-	}
-	public void setImageURL(String imageURL) {
-		this.imageURL = imageURL;
 	}
 	public double getLatitude() {
 		return latitude;
